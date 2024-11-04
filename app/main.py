@@ -22,10 +22,15 @@ def create_app():
     app.register_blueprint(auth_bp, url_prefix="/auth")
 
 
-    #Endpoint de prueba
+    #Endpoint raíz, direcciona a Documentation
     @app.route('/')
-    def index():
-        return "¡Bienvenido a la API Pokémon!"
+    def root():
+        return documentation()
+
+    #Endpoint de la documentación 
+    @app.route('/documentation')
+    def documentation():
+        return send_from_directory('docs', 'documentation.html')
     
     #Endpoint para obtener el tipo de un Pokémon (fuego, agua, tierra, aire, etc) según su nombre
     @app.route('/pokemon/<string:pokemon_name>/type', methods=['GET'])

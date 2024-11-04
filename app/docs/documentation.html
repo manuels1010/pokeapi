@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API de Pokémon - Documentación</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2 { color: #333; }
+        .endpoint { margin-bottom: 20px; }
+        .endpoint h3 { color: #0056b3; }
+        .endpoint p { margin: 5px 0; }
+        .endpoint pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+        .description {
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentación de la API de Pokémon</h1>
+    <p>Esta API permite obtener información sobre los tipos de Pokémon, un Pokémon aleatorio de un tipo específico, y el Pokémon con el nombre más largo de un tipo.</p>
+
+    <h1>Endpoints Disponibles</h1>
+    <ul>
+        <li>
+            <strong>http://127.0.0.1:5000/</strong> 
+            <span class="description">- Inicio. Direcciona a la documentación de la API.</span>
+        </li>
+        <li>
+            <strong>http://127.0.0.1:5000/documentation</strong> 
+            <span class="description">- Página de documentación de la API.</span>
+        </li>
+        <li>
+            <strong>http://127.0.0.1:5000/pokemon/&lt;nombre_pokemon&gt;/type</strong> 
+            <span class="description">- Obtiene el tipo de un Pokémon dado su nombre (requiere autenticación).</span>
+        </li>
+        <li>
+            <strong>http://127.0.0.1:5000/pokemon/random/&lt;tipo_pokemon&gt;</strong> 
+            <span class="description">- Devuelve un Pokémon aleatorio de un tipo específico (requiere autenticación).</span>
+        </li>
+        <li>
+            <strong>http://127.0.0.1:5000/pokemon/longest-name/&lt;tipo_pokemon&gt;</strong> 
+            <span class="description">- Obtiene el Pokémon con el nombre más largo de un tipo específico (requiere autenticación).</span>
+        </li>
+        <li>
+            <strong>http://127.0.0.1:5000/auth/login</strong> 
+            <span class="description">- Permite iniciar sesión y obtener un token JWT para autenticación.</span>
+        </li>
+        <li>
+            <strong>http://127.0.0.1:5000/auth/register</strong> 
+            <span class="description">- Permite registrar un nuevo usuario en la API.</span>
+        </li>
+    </ul>
+    
+    <div class="endpoint">
+        <h2>Entendimiento de los Endpoints</h2>
+        
+        <div class="endpoint">
+            <h3>1. Obtener el tipo de un Pokémon (Requiere autenticacíón)</h3>
+            <p><strong>URL:</strong> <code>http://127.0.0.1:5000/pokemon/&lt;nombre_pokemon&gt;/type</code></p>
+            <p><strong>Método:</strong> GET</p>
+            <p><strong>Descripción:</strong> Obtiene el tipo de un Pokémon dado su nombre.</p>
+            <pre>
+Ejemplo de uso:
+GET http://127.0.0.1:5000/pokemon/pikachu/type
+Respuesta: {"Nombre del pokemon": "pikachu", "Tipo de Pokémon": ["electric"]}
+            </pre>
+        </div>
+
+        <div class="endpoint">
+            <h3>2. Obtener un Pokémon aleatorio de un tipo específico (Requiere autenticacíón)</h3>
+            <p><strong>URL:</strong> <code>http://127.0.0.1:5000/pokemon/random/&lt;tipo_pokemon&gt;</code></p>
+            <p><strong>Método:</strong> GET</p>
+            <p><strong>Descripción:</strong> Retorna un Pokémon aleatorio del tipo especificado.</p>
+            <pre>
+Ejemplo de uso:
+GET http://127.0.0.1:5000/pokemon/random/fire
+Respuesta: {"Pokémon aleatorio": "charizard-mega-y", "Tipo de Pokémon": "fire"}
+            </pre>
+        </div>
+
+        <div class="endpoint">
+            <h3>3. Obtener el Pokémon con el nombre más largo de un tipo específico (Requiere autenticacíón)</h3>
+            <p><strong>URL:</strong> <code>http://127.0.0.1:5000/pokemon/longest-name/&lt;tipo_pokemon&gt;</code></p>
+            <p><strong>Método:</strong> GET</p>
+            <p><strong>Descripción:</strong> Devuelve el nombre del Pokémon más largo dentro del tipo especificado.</p>
+            <pre>
+Ejemplo de uso:
+GET http://127.0.0.1:5000/pokemon/longest-name/water
+Respuesta: {"Nombre más largo": "blastoise-mega", "Tipo de Pokémon": "water"}
+            </pre>
+        </div>
+
+        <div class="endpoint">
+            <h3>4. Registro de un nuevo usuario (Requiere método POST)</h3>
+            <p><strong>URL:</strong> <code>http://127.0.0.1:5000/auth/register</code></p>
+            <p><strong>Método:</strong> POST</p>
+            <p><strong>Descripción:</strong> Permite registrar un nuevo usuario en la API.</p>
+            <pre>
+        Ejemplo de uso:
+        POST http://127.0.0.1:5000/auth/register
+        Body:
+        {
+            "username": "nuevo_usuario",
+            "password": "password123"
+        }
+        Respuesta: {"message": "Usuario registrado exitosamente"}
+            </pre>
+        </div>
+        <div class="endpoint">
+            <h3>5. Inicio de sesión y obtención de token JWT (Requiere método POST)</h3>
+            <p><strong>URL:</strong> <code>http://127.0.0.1:5000/auth/login</code></p>
+            <p><strong>Método:</strong> POST</p>
+            <p><strong>Descripción:</strong> Permite iniciar sesión y obtener un token JWT para autenticación.</p>
+            <pre>
+        Ejemplo de uso:
+        POST http://127.0.0.1:5000/auth/login
+        Body:
+        {
+            "username": "usuario_existente",
+            "password": "password123"
+        }
+        Respuesta: {"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."}
+            </pre>
+        </div>
