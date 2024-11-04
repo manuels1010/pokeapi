@@ -17,3 +17,9 @@ class config:
 
     #Secreto para firmar y validar tokens, y proteger datos sensibles
     SECRET_KEY = os.getenv("SECRET_KEY")
+
+    # URI de la base de datos
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URI")
+
+    # Desactiva las notificaciones de seguimiento de cambios
+    SQLALCHEMY_TRACK_MODIFICATIONS = False  
