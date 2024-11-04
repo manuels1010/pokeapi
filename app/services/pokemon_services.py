@@ -51,3 +51,30 @@ def get_random_pokemon_by_type(pokemon_type):
         return jsonify({"error": f"Error al obtener Pokémon del tipo {pokemon_type}: {http_err}"}), 404
     except Exception as e:
         return jsonify({"error": f"Ocurrió un error: {e}"}), 500   
+    
+#función para obtener el nombre más largo del Pokémon según el tipo
+def get_longest_name_pokemon_by_type(pokemon_type):
+
+    #Construcción de la URL para obtener los datos del tipo de Pokémon
+    url = f"{config.POKEAPI_LONGEST_URL}/{pokemon_type.lower()}"
+
+    try:
+        #Solicitud de datos a la API PokéAPI para obtener el tipo de Pokémon
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
+        
+        # Obtener todos los Pokémon de ese tipo
+        pokemon_list = data['pokemon']
+        
+        #Identificar el Pokémon con el nombre más largo según el tipo
+        longest_name_pokemon = max(pokemon_list, key=lambda p: len(p['pokemon']['name']))
+        longest_name = longest_name_pokemon['pokemon']['name']
+        
+        # Retorn respuesta con el  nombre del Pokémon aleatorio en formato JSON
+        return jsonify({"longest_name_pokemon": longest_name, "type": pokemon_type})
+    
+    except requests.exceptions.HTTPError as http_err:
+        return jsonify({"error": f"Error al obtener Pokémon del tipo {pokemon_type}: {http_err}"}), 404
+    except Exception as e:
+        return jsonify({"error": f"Ocurrió un error: {e}"}), 500 

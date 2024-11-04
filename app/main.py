@@ -1,6 +1,6 @@
 from flask import Flask
 from .config import config
-from .services.pokemon_services import get_pokemon_type, get_random_pokemon_by_type
+from .services.pokemon_services import get_pokemon_type, get_random_pokemon_by_type, get_longest_name_pokemon_by_type
 
 def create_app():
     app = Flask(__name__)
@@ -20,6 +20,12 @@ def create_app():
     @app.route('/pokemon/random/<string:pokemon_type>', methods=['GET'])
     def random_pokemon_by_type(pokemon_type):
         return get_random_pokemon_by_type(pokemon_type)
+    
+    #Endpoint para obtener el nombre más largo de un  Pokémon según su tipo.
+    @app.route('/pokemon/longest-name/<string:pokemon_type>', methods=['GET'])
+    def longest_name_pokemon_by_type(pokemon_type):
+        return get_longest_name_pokemon_by_type(pokemon_type)
+
 
     return app
 

@@ -12,5 +12,8 @@ class config:
     #URL de la API (PokéAPI) de Pokémon para obtener el tipo del pokémon
     POKEAPI_TYPE_URL = os.getenv("POKEAPI_TYPE_URL")
 
+    #URL de la API (PokéAPI) de Pokémon para obtener el nombre más largo de un Pokémon de cierto tipo
+    POKEAPI_LONGEST_URL = os.getenv("POKEAPI_LONGEST_URL")
+
     #Secreto para firmar y validar tokens, y proteger datos sensibles
     SECRET_KEY = os.getenv("SECRET_KEY")
