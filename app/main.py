@@ -1,6 +1,6 @@
 from flask import Flask
 from .config import config
-from .services.pokemon_services import get_pokemon_type
+from .services.pokemon_services import get_pokemon_type, get_random_pokemon_by_type
 
 def create_app():
     app = Flask(__name__)
@@ -16,6 +16,10 @@ def create_app():
     def pokemon_type(pokemon_name):
         return get_pokemon_type(pokemon_name)
     
+    #Endpoint para obtener un Pokémon al azar de un tipo en específico.
+    @app.route('/pokemon/random/<string:pokemon_type>', methods=['GET'])
+    def random_pokemon_by_type(pokemon_type):
+        return get_random_pokemon_by_type(pokemon_type)
 
     return app
 

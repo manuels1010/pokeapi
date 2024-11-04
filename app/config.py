@@ -6,8 +6,11 @@ load_dotenv ()
 
 class config:
 
-    #URL base de la API (PokéAPI) de Pokémon
+    #URL base de la API (PokéAPI) de Pokémon para obtener el nombre del pokémon
     POKEAPI_BASE_URL = os.getenv("POKEAPI_BASE_URL")
+
+    #URL de la API (PokéAPI) de Pokémon para obtener el tipo del pokémon
+    POKEAPI_TYPE_URL = os.getenv("POKEAPI_TYPE_URL")
 
     #Secreto para firmar y validar tokens, y proteger datos sensibles
     SECRET_KEY = os.getenv("SECRET_KEY")
