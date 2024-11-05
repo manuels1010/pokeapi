@@ -4,7 +4,7 @@ from flask import jsonify, request
 from functools import wraps
 from ..config import config
 
-#Generación del Token en JWT con expiración de 30 minutos
+#Generación del Token en JWT con expiración de 1 hora.
 def generate_token(username):
     try:
         payload = {

@@ -31,7 +31,7 @@ Antes de comenzar, asegúrate de tener las siguientes herramientas instaladas co
 
 - **Python** >= 3.10
 - **Postman** (para pruebas de API) - cualquier versión reciente
-- **SQLite** (opcional, para ver usuarios creados) - cualquier versión reciente
+- **SQLite** (opcional, para ver usuarios creados en la BD) - cualquier versión reciente
 - **Docker** >= 20.10 (para ejecutar la aplicación en un contenedor)
 
 ## Configuración 
@@ -44,9 +44,9 @@ Desde la terminal posicionate en la carpeta descargada
 ```sh
 cd pokeapi
 ```
-Modifica las variables desde el archivo docker-compose.yaml
+Instala los requisitos desde el archivo requirements.txt
 ```sh
-docker-compose.yaml
+pip install -r requirements.txtdocker-compose.yaml
 ```
 Construir las imágenes
 ```sh
@@ -63,15 +63,15 @@ Esta API de Pokémon permite acceder a diferentes datos sobre los Pokémon media
 ```sh
 http://127.0.0.1:5000/documentation
 ```
-**Registrar un Usuario** (solo para endpoints protegidos):
+**Registrar un Usuario** (Desde la aplicación Postman):
 ```sh
 http://127.0.0.1:5000/auth/register
 ```
-**Iniciar Sesión y Obtener un Token**:
+**Iniciar Sesión y Obtener un Token** (Desde la aplicación Postman):
 ```sh
 http://127.0.0.1:5000/auth/login
 ```
-**Hacer una Solicitud a un Endpoint Protegido**:
+**Hacer una Solicitud a un Endpoint Protegido**: (Desde la aplicación Postman):
 En Postman, selecciona el endpoint que deseas probar (por ejemplo, `GET http://127.0.0.1:5000/pokemon/pikachu/type`).
    - Agrega el token en el encabezado de la solicitud:
      ```
@@ -99,13 +99,12 @@ En Postman, selecciona el endpoint que deseas probar (por ejemplo, `GET http://1
 - **Método**: POST
 - **Descripción**: Permite registrar un nuevo usuario para acceder a los endpoints protegidos de la API.
 - **Ejemplo de uso**:
-  ```http
-  POST /auth/register
-Body:
-{
-  "username": "nuevo_usuario",
-  "password": "password123"
-}
+  ```sh
+    {
+    "username": "nuevo_usuario",
+    "password": "password123"
+    }
+  ```
 Respuesta: {"message": "Usuario registrado exitosamente"}
 
 ### 4. Inicio de sesión y obtención de token JWT
@@ -113,13 +112,12 @@ Respuesta: {"message": "Usuario registrado exitosamente"}
 - **Método**: POST
 - **Descripción**: Permite a un usuario iniciar sesión y obtener un token JWT para acceder a los endpoints protegidos.
 - **Ejemplo de uso**:
-  ```http
- POST /auth/login
-Body:
-{
-  "username": "usuario_existente",
-  "password": "password123"
-}
+  ```sh
+    {
+    "username": "nuevo_usuario",
+    "password": "password123"
+    }
+  ```
 Respuesta: {"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."}
 
 ### 5. Obtener el tipo de un Pokémon
