@@ -1,0 +1,17 @@
+services:
+  pokemon_api:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - POKEAPI_BASE_URL=https://pokeapi.co/api/v2/pokemon
+      - POKEAPI_TYPE_URL=https://pokeapi.co/api/v2/type
+      - POKEAPI_LONGEST_URL=https://pokeapi.co/api/v2/type
+      - DATABASE_URI=sqlite:///pokemon_api.db
+      - SECRET_KEY=bH7f$1Jk@9zXq4Vm@Ls2WjR!t8PvNy^C
+    volumes:
+      - .:/app
+      - pokemon_data:/app/instance  # Volumen para la base de datos SQLite
+
+volumes:
+  pokemon_data:
