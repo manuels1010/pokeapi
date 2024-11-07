@@ -46,7 +46,7 @@ cd pokeapi
 ```
 Instala los requisitos desde el archivo requirements.txt
 ```sh
-pip install -r requirements.txtdocker-compose.yaml
+pip install -r requirements.txt
 ```
 Construir las imágenes
 ```sh
